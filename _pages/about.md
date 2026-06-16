@@ -7,6 +7,163 @@ redirect_from:
   - /about.html
 ---
 
+<style>
+.intro-envelope {
+  --env-ink: #243040;
+  --env-muted: #6b7280;
+  --env-line: #d9e2ec;
+  --env-paper: #ffffff;
+  --env-bg: #f6f8fb;
+  max-width: 680px;
+  margin: 0.5rem 0 2rem;
+}
+
+.intro-envelope__button {
+  position: relative;
+  width: min(100%, 520px);
+  height: 260px;
+  border: 1px solid var(--env-line);
+  border-radius: 10px;
+  background: var(--env-bg);
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 16px 42px rgba(36, 48, 64, 0.08);
+}
+
+.intro-envelope__button:focus-visible {
+  outline: 3px solid #9cc3ea;
+  outline-offset: 4px;
+}
+
+.intro-envelope__paper {
+  position: absolute;
+  left: 9%;
+  right: 9%;
+  bottom: 34px;
+  height: 150px;
+  padding: 1.35rem 1.5rem;
+  border: 1px solid var(--env-line);
+  border-radius: 8px;
+  background: var(--env-paper);
+  color: var(--env-muted);
+  text-align: left;
+  transform: translateY(96px);
+  transition: transform 1.1s ease;
+  z-index: 1;
+}
+
+.intro-envelope__paper strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--env-ink);
+  font-size: 1rem;
+}
+
+.intro-envelope__base,
+.intro-envelope__left,
+.intro-envelope__right,
+.intro-envelope__flap {
+  position: absolute;
+  inset: auto 0 0;
+  width: 100%;
+  height: 62%;
+}
+
+.intro-envelope__base {
+  background: #e8eef5;
+  border-top: 1px solid var(--env-line);
+  z-index: 2;
+}
+
+.intro-envelope__left {
+  clip-path: polygon(0 0, 50% 50%, 0 100%);
+  background: #dfe8f2;
+  z-index: 3;
+}
+
+.intro-envelope__right {
+  clip-path: polygon(100% 0, 50% 50%, 100% 100%);
+  background: #d5e0eb;
+  z-index: 3;
+}
+
+.intro-envelope__flap {
+  top: 38%;
+  bottom: auto;
+  height: 54%;
+  clip-path: polygon(0 0, 50% 62%, 100% 0);
+  background: #cbd8e6;
+  transform-origin: top center;
+  transition: transform 1.1s ease, background 1.1s ease;
+  z-index: 4;
+}
+
+.intro-envelope__label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1.1rem;
+  z-index: 5;
+  color: var(--env-ink);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: opacity 0.5s ease;
+}
+
+.intro-envelope.is-open .intro-envelope__paper {
+  transform: translateY(-18px);
+}
+
+.intro-envelope.is-open .intro-envelope__flap {
+  background: #dde7f1;
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.intro-envelope.is-open .intro-envelope__label {
+  opacity: 0;
+}
+
+@media (max-width: 600px) {
+  .intro-envelope__button {
+    height: 220px;
+  }
+
+  .intro-envelope__paper {
+    left: 7%;
+    right: 7%;
+    height: 130px;
+    padding: 1rem;
+  }
+}
+</style>
+
+<div class="intro-envelope" id="intro-envelope">
+  <button class="intro-envelope__button" type="button" aria-expanded="false" aria-controls="intro-envelope-content">
+    <span class="intro-envelope__paper" id="intro-envelope-content">
+      <strong>个人简介</strong>
+      个人简介待补充。
+    </span>
+    <span class="intro-envelope__base" aria-hidden="true"></span>
+    <span class="intro-envelope__left" aria-hidden="true"></span>
+    <span class="intro-envelope__right" aria-hidden="true"></span>
+    <span class="intro-envelope__flap" aria-hidden="true"></span>
+    <span class="intro-envelope__label">点击打开</span>
+  </button>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var envelope = document.getElementById('intro-envelope');
+    if (!envelope) return;
+    var button = envelope.querySelector('.intro-envelope__button');
+    button.addEventListener('click', function () {
+      var isOpen = envelope.classList.toggle('is-open');
+      button.setAttribute('aria-expanded', String(isOpen));
+    });
+  });
+</script>
+
 ## 教育背景
 
 **南京大学 数字经济专业**  

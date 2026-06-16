@@ -1,6 +1,6 @@
 # Basic Site Settings
 locale                   : "zh-CN"
-site_theme               : "default"
+site_theme               : "air"
 title                    : "崔泽宇"
 title_separator          : "-"
 name                     : &name "崔泽宇"

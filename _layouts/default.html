@@ -11,7 +11,196 @@ layout: compress
     {% include head/custom.html %}
   </head>
 
-  <body>
+  <body{% if page.url == "/" %} class="homepage-gate-locked"{% endif %}>
+
+    {% if page.url == "/" %}
+      <style>
+        .homepage-gate-locked {
+          overflow: hidden;
+          background: #f6f8fb;
+        }
+
+        .homepage-gate-locked .masthead,
+        .homepage-gate-locked #main,
+        .homepage-gate-locked .page__footer {
+          opacity: 0;
+          pointer-events: none;
+          transform: translateY(10px);
+        }
+
+        .homepage-gate-open .masthead,
+        .homepage-gate-open #main,
+        .homepage-gate-open .page__footer {
+          opacity: 1;
+          transform: translateY(0);
+          transition: opacity 0.9s ease, transform 0.9s ease;
+        }
+
+        .homepage-gate {
+          position: fixed;
+          inset: 0;
+          z-index: 9999;
+          display: grid;
+          place-items: center;
+          padding: 1.5rem;
+          background: linear-gradient(135deg, #f7fafc 0%, #edf4fa 100%);
+          color: #243040;
+          transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .homepage-gate.is-done {
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+        }
+
+        .homepage-gate__wrap {
+          width: min(92vw, 560px);
+          text-align: center;
+        }
+
+        .homepage-gate__envelope {
+          position: relative;
+          width: 100%;
+          height: 300px;
+          border: 1px solid #d7e2ec;
+          border-radius: 12px;
+          background: #f9fbfd;
+          cursor: pointer;
+          overflow: hidden;
+          box-shadow: 0 24px 70px rgba(36, 48, 64, 0.12);
+        }
+
+        .homepage-gate__envelope:focus-visible {
+          outline: 3px solid #9cc3ea;
+          outline-offset: 5px;
+        }
+
+        .homepage-gate__paper {
+          position: absolute;
+          left: 9%;
+          right: 9%;
+          bottom: 42px;
+          height: 170px;
+          display: grid;
+          place-items: center;
+          border: 1px solid #d7e2ec;
+          border-radius: 8px;
+          background: #ffffff;
+          color: #5f6f80;
+          transform: translateY(120px);
+          transition: transform 1.25s ease;
+          z-index: 1;
+        }
+
+        .homepage-gate__paper strong {
+          display: block;
+          margin-bottom: 0.35rem;
+          color: #243040;
+          font-size: 1.1rem;
+        }
+
+        .homepage-gate__base,
+        .homepage-gate__left,
+        .homepage-gate__right,
+        .homepage-gate__flap {
+          position: absolute;
+          inset: auto 0 0;
+          width: 100%;
+          height: 62%;
+        }
+
+        .homepage-gate__base {
+          background: #e8eef5;
+          border-top: 1px solid #d7e2ec;
+          z-index: 2;
+        }
+
+        .homepage-gate__left {
+          clip-path: polygon(0 0, 50% 50%, 0 100%);
+          background: #dee8f2;
+          z-index: 3;
+        }
+
+        .homepage-gate__right {
+          clip-path: polygon(100% 0, 50% 50%, 100% 100%);
+          background: #d4dfeb;
+          z-index: 3;
+        }
+
+        .homepage-gate__flap {
+          top: 38%;
+          bottom: auto;
+          height: 54%;
+          clip-path: polygon(0 0, 50% 62%, 100% 0);
+          background: #cbd8e6;
+          transform-origin: top center;
+          transition: transform 1.25s ease, background 1.25s ease;
+          z-index: 4;
+        }
+
+        .homepage-gate__hint {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 1.2rem;
+          z-index: 5;
+          color: #243040;
+          font-weight: 600;
+          transition: opacity 0.45s ease;
+        }
+
+        .homepage-gate__title {
+          margin-top: 1.2rem;
+          color: #5f6f80;
+          font-size: 0.98rem;
+        }
+
+        .homepage-gate.is-opening .homepage-gate__paper {
+          transform: translateY(-24px);
+        }
+
+        .homepage-gate.is-opening .homepage-gate__flap {
+          background: #dde7f1;
+          transform: rotateX(180deg);
+          z-index: 1;
+        }
+
+        .homepage-gate.is-opening .homepage-gate__hint {
+          opacity: 0;
+        }
+
+        @media (max-width: 600px) {
+          .homepage-gate__envelope {
+            height: 240px;
+          }
+
+          .homepage-gate__paper {
+            height: 138px;
+            bottom: 34px;
+          }
+        }
+      </style>
+
+      <div class="homepage-gate" id="homepage-gate">
+        <div class="homepage-gate__wrap">
+          <button class="homepage-gate__envelope" type="button" aria-label="打开个人主页">
+            <span class="homepage-gate__paper">
+              <span>
+                <strong>个人简介</strong>
+                点击后进入主页
+              </span>
+            </span>
+            <span class="homepage-gate__base" aria-hidden="true"></span>
+            <span class="homepage-gate__left" aria-hidden="true"></span>
+            <span class="homepage-gate__right" aria-hidden="true"></span>
+            <span class="homepage-gate__flap" aria-hidden="true"></span>
+            <span class="homepage-gate__hint">点击打开</span>
+          </button>
+          <div class="homepage-gate__title">崔泽宇 · 个人主页</div>
+        </div>
+      </div>
+    {% endif %}
 
     {% include browser-upgrade.html %}
     {% include masthead.html %}
@@ -26,6 +215,24 @@ layout: compress
     </div>
 
     {% include scripts.html %}
+
+    {% if page.url == "/" %}
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          var gate = document.getElementById('homepage-gate');
+          if (!gate) return;
+          var opener = gate.querySelector('.homepage-gate__envelope');
+          opener.addEventListener('click', function () {
+            gate.classList.add('is-opening');
+            window.setTimeout(function () {
+              document.body.classList.remove('homepage-gate-locked');
+              document.body.classList.add('homepage-gate-open');
+              gate.classList.add('is-done');
+            }, 1250);
+          });
+        });
+      </script>
+    {% endif %}
 
   </body>
 </html>

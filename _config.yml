@@ -14,11 +14,13 @@ author:
   avatar           : "profile.png"
   name             : "崔泽宇"
   pronouns         :
-  bio              : "南京大学数字经济专业本科生"
+  bio              :
   location         : "江苏 苏州"
   employer         : "Nanjing University"
   uri              : "https://cui-zeyu.github.io"
+  phone            : "+86-13585236133"
   email            : "3027771319@qq.com"
+  email_alt        : "231880019@smail.nju.edu.cn"
 
   academia         :
   arxiv            :

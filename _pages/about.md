@@ -1,18 +1,11 @@
 ---
 permalink: /
-title: "崔泽宇"
+title: "个人简介"
 author_profile: true
 redirect_from:
   - /about/
   - /about.html
 ---
-
-# 崔泽宇
-
-**Tel:** +86-13585236133  
-**Email:** 3027771319@qq.com | 231880019@smail.nju.edu.cn  
-**Location:** 江苏 苏州  
-**GitHub:** [Cui-ZeYu](https://github.com/Cui-ZeYu)
 
 ## 教育背景
 

@@ -1,10 +1,10 @@
 # Basic Site Settings
 locale                   : "zh-CN"
 site_theme               : "default"
-title                    : "崔泽宇 | Digital Economy, AI & Quant Research"
+title                    : "崔泽宇"
 title_separator          : "-"
 name                     : &name "崔泽宇"
-description              : &description "南京大学数字经济本科生，关注人工智能、量化金融与数据驱动决策。"
+description              : &description "南京大学数字经济专业本科生"
 url                      : https://cui-zeyu.github.io
 baseurl                  : ""
 repository               : "Cui-ZeYu/Cui-ZeYu.github.io"
@@ -14,7 +14,7 @@ author:
   avatar           : "profile.png"
   name             : "崔泽宇"
   pronouns         :
-  bio              : "南京大学数字经济本科生，关注 AI、量化金融与数据驱动商业分析。"
+  bio              : "南京大学数字经济专业本科生"
   location         : "江苏 苏州"
   employer         : "Nanjing University"
   uri              : "https://cui-zeyu.github.io"

@@ -1,16 +1,20 @@
-# Homepage navigation
+# The following is the order of the links in the header of the website.
+
 main:
-  - title: "Profile"
-    url: /#profile
+  - title: "教育背景"
+    url: /#教育背景
 
-  - title: "Experience"
-    url: /#experience
+  - title: "实习经历"
+    url: /#实习经历
 
-  - title: "Projects"
-    url: /#projects
+  - title: "项目经历"
+    url: /#项目经历
 
-  - title: "Education"
-    url: /#education
+  - title: "课外活动"
+    url: /#课外活动--领导力
 
-  - title: "Skills"
-    url: /#skills
+  - title: "比赛荣誉"
+    url: /#比赛荣誉
+
+  - title: "个人技能"
+    url: /#个人技能--爱好

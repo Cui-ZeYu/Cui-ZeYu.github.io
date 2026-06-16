@@ -46,7 +46,7 @@ layout: compress
 
         body.homepage-gate-open .masthead {
           border-bottom: 1px solid #d7e2ec;
-          background: rgba(247, 250, 252, 0.92);
+          background: rgba(36, 48, 64, 0.96);
           backdrop-filter: blur(14px);
           box-shadow: 0 12px 38px rgba(36, 48, 64, 0.06);
         }
@@ -55,13 +55,52 @@ layout: compress
           background: transparent;
         }
 
+        body.homepage-gate-open .masthead__menu-item,
+        body.homepage-gate-open .masthead__menu-item--lg {
+          background: transparent;
+        }
+
         body.homepage-gate-open .masthead__menu-item a {
-          color: #344356;
+          color: #f7fafc;
+          opacity: 0.92;
+        }
+
+        body.homepage-gate-open .masthead__menu-item a:hover,
+        body.homepage-gate-open .masthead__menu-item.selected a,
+        body.homepage-gate-open #theme-toggle a {
+          color: #ffffff;
+          opacity: 1;
+        }
+
+        body.homepage-gate-open .masthead__menu-item.selected a {
+          border-bottom-color: #ffffff;
         }
 
         body.homepage-gate-open #main {
           max-width: 1180px;
           padding-top: 2.25rem;
+        }
+
+        @media screen and (min-width: 1024px) {
+          body.homepage-gate-open #main {
+            display: grid;
+            grid-template-columns: 320px minmax(0, 1fr);
+            gap: 1.5rem;
+          }
+
+          body.homepage-gate-open .sidebar {
+            position: sticky;
+            top: 6rem;
+            width: 320px;
+            max-width: none;
+            height: fit-content;
+          }
+
+          body.homepage-gate-open .page {
+            width: auto;
+            max-width: none;
+            float: none;
+          }
         }
 
         body.homepage-gate-open .sidebar {
@@ -70,6 +109,21 @@ layout: compress
           background: rgba(255, 255, 255, 0.78);
           box-shadow: 0 18px 48px rgba(36, 48, 64, 0.08);
           padding: 1.25rem;
+        }
+
+        body.homepage-gate-open .author__urls,
+        body.homepage-gate-open .author__urls-wrapper {
+          width: 100%;
+        }
+
+        body.homepage-gate-open .author__urls li {
+          overflow-wrap: anywhere;
+          word-break: normal;
+        }
+
+        body.homepage-gate-open .author__urls a {
+          font-size: 0.92rem;
+          line-height: 1.45;
         }
 
         body.homepage-gate-open .author__avatar img {
